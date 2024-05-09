@@ -1,13 +1,14 @@
 #!/bin/bash
 
 # Source ROS environment
-source /opt/ros/humble/setup.bash
+source /opt/ros/galactic/setup.bash
 
 # Navigate to the workspace
 cd /root/ros2_ws
 
-# Build the workspace
-colcon build --symlink-install
+# Build the workspace 
+# Here we are skipping build within container, to save time
+# colcon build --symlink-install
 
 # Source the local setup script
 source install/setup.bash
