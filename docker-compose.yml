@@ -24,34 +24,21 @@ services:
       - /home/tortoisebot/.Xauthority:/root/.Xauthority 
       - ~/ros2_ws/:/root/ros2_ws/
 
-# docker run -it --rm \
-#     --hostname tortoisebot-ros2-bringup \
-#     --network host \
-#     -e ROS_MASTER_URI=http://master:11311 \
-#     -e ROS_HOSTNAME=master \
-#     -v ~/ros2_ws/src/:/root/ros2_ws/src/ \
-#     ros2_bringup:latest \
-#     bash -c "ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=False"
-
-
-#   mapping:
-#     build:
-#       context: ./slam 
-#       dockerfile: Dockerfile
-#     image: ros2_slam:latest
-#     hostname: tortoisebot-ros2-slam
-#     restart: always
-#     depends_on:
-#       - gazebo
-#     command: bash -c "source /root/ros2_ws/install/setup.bash && ros2 launch tortoisebot_slam cartographer.launch.py use_sim_time:=True"
-#     environment:
-#       - DISPLAY
-#       - ROS_MASTER_URI=http://tortoisebot-ros2-gazebo:11311
-#     volumes:
-#       - /tmp/.X11-unix:/tmp/.X11-unix
-#       - ~/ros2_ws/src/tortoisebot/:/root/ros2_ws/src/tortoisebot
-#     networks:
-#       - ros2_net
-
-# networks:
-#   ros2_net:
+  slam:
+    build:
+      context: ./slam 
+      dockerfile: Dockerfile
+    image: ros2_slam:latest
+    hostname: tortoisebot-ros2-slam
+    network_mode: host
+    restart: always
+    depends_on:
+      - bringup
+    command: bash -c "source /root/ros2_ws/install/setup.bash && ros2 launch tortoisebot_slam cartographer.launch.py use_sim_time:=False"
+    environment:
+      - DISPLAY
+      - ROS_MASTER_URI=http://master:11311
+      - ROS_HOSTNAME=master
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ~/ros2_ws/:/root/ros2_ws/

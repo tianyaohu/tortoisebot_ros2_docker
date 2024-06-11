@@ -1,9 +1,9 @@
 # Use a custom ROS 2 image as the base
-FROM ros2_gazebo:latest
+FROM ros2_bringup:latest
 
 # Make sure the package lists are up-to-date
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    ros-humble-cartographer \
-    ros-humble-cartographer-ros && \
-    rm -rf /var/lib/apt/lists/*
+RUN echo "source /opt/ros/galactic/setup.bash" >> ~/.bashrc
+
+# Set the working directory
+WORKDIR /root/ros2_ws
+

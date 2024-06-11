@@ -8,7 +8,6 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN locale-gen en_US en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 ENV LANG en_US.UTF-8
 
-
 RUN apt-get update && apt-get install -y \
     build-essential \
     python3-colcon-common-extensions \
