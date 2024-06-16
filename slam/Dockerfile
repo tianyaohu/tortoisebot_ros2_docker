@@ -1,5 +1,5 @@
 # Use a custom ROS 2 image as the base
-FROM ros2_bringup:latest
+FROM tortoisebot-ros2-real:latest
 
 # Make sure the package lists are up-to-date
 RUN echo "source /opt/ros/galactic/setup.bash" >> ~/.bashrc
