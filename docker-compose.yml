@@ -3,15 +3,15 @@ services:
     build:
       context: ./bringup
       dockerfile: Dockerfile
-    image: ros2_bringup:latest
+    image: tortoisebot-ros2-real:latest
     hostname: tortoisebot-ros2-bringup
     network_mode: host
     cap_add:
       - SYS_RAWIO
     security_opt:
       - "no-new-privileges:true"
+    privileged: true
     command: bash -c "source install/setup.bash && ros2 launch tortoisebot_bringup bringup.launch.py use_sim_time:=False"
-    # command: tail -f /dev/null
     devices:
       - "/dev/mem:/dev/mem"
       - "/dev/ttyUSB0:/dev/ttyUSB0"
@@ -28,7 +28,7 @@ services:
     build:
       context: ./slam 
       dockerfile: Dockerfile
-    image: ros2_slam:latest
+    image: tortoisebot-ros2-slam-real:latest
     hostname: tortoisebot-ros2-slam
     network_mode: host
     restart: always
