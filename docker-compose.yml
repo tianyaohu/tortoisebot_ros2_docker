@@ -2,10 +2,10 @@ version: "3.3"
 
 services:
   gazebo: 
-    build:
-      context: ./gazebo
-      dockerfile: Dockerfile
-    image: ros2_gazebo:latest
+    # build:
+    #   context: ./gazebo
+    #   dockerfile: Dockerfile
+    image: tianyaoh501679/tianyaoh-cp22:tortoisebot-ros2-gazebo
     hostname: tortoisebot-ros2-gazebo
     # command: tail -f /dev/null
     command: bash -c "source /root/ros2_ws/install/setup.bash && ros2 launch tortoisebot_bringup bringup.launch.py use_sim_time:=True"
@@ -19,10 +19,10 @@ services:
       - ros2_net
 
   mapping:
-    build:
-      context: ./slam
-      dockerfile: Dockerfile
-    image: ros2_slam:latest
+    # build:
+    #   context: ./slam
+    #   dockerfile: Dockerfile
+    image: tianyaoh501679/tianyaoh-cp22:tortoisebot-ros2-slam
     hostname: tortoisebot-ros2-slam
     restart: always
     depends_on:
