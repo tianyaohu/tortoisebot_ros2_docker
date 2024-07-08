@@ -1,9 +1,9 @@
 services:
   bringup: 
-    build:
-      context: ./bringup
-      dockerfile: Dockerfile
-    image: tortoisebot-ros2-real:latest
+    # build:
+    #   context: ./bringup
+    #   dockerfile: Dockerfile
+    image: tianyaoh501679/tianyaoh-cp22:tortoisebot-ros2-real
     hostname: tortoisebot-ros2-bringup
     network_mode: host
     cap_add:
@@ -25,10 +25,10 @@ services:
       - ~/ros2_ws/:/root/ros2_ws/
 
   slam:
-    build:
-      context: ./slam 
-      dockerfile: Dockerfile
-    image: tortoisebot-ros2-slam-real:latest
+    # build:
+    #   context: ./slam 
+    #   dockerfile: Dockerfile
+    image: tianyaoh501679/tianyaoh-cp22:tortoisebot-ros2-slam-real
     hostname: tortoisebot-ros2-slam
     network_mode: host
     restart: always
