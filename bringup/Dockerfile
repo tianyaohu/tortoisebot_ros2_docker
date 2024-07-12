@@ -28,11 +28,16 @@ RUN apt-get update && apt-get install -y python3-rpi.gpio
 
 RUN echo "source /opt/ros/galactic/setup.bash" >> ~/.bashrc
 
-# Set the working directory
-WORKDIR /root/ros2_ws
+# workspace was temporarily moved into docker dir to facilitate copying
+WORKDIR /root/ros2_ws/
+COPY ./ros2_ws/src/ ./src/
 
-# Copy the entry.sh script into the container at /usr/src/app
-COPY ./entry.sh /usr/src/app/entry.sh
+# Source the ROS 2 installation
+SHELL ["/bin/bash", "-c"]
+RUN source /opt/ros/galactic/setup.bash && colcon build
 
-# Run entry.sh when the container launches
-ENTRYPOINT ["/usr/src/app/entry.sh"]
+# Set the entrypoint to source the workspace setup file
+ENTRYPOINT ["/bin/bash", "-c", "source install/setup.bash && exec \"$@\"", "--"]
+
+# Default command
+CMD ["bash"]

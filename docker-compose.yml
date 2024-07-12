@@ -1,8 +1,11 @@
 services:
   bringup: 
+    # To Build Locally uncomment the following
     # build:
-    #   context: ./bringup
-    #   dockerfile: Dockerfile
+      # context: ./bringup
+      # dockerfile: Dockerfile
+    # image: tortoisebot-ros2-real
+    # To Pull Image Remotely
     image: tianyaoh501679/tianyaoh-cp22:tortoisebot-ros2-real
     hostname: tortoisebot-ros2-bringup
     network_mode: host
@@ -22,12 +25,15 @@ services:
       - ROS_HOSTNAME=master
     volumes:
       - /home/tortoisebot/.Xauthority:/root/.Xauthority 
-      - ~/ros2_ws/:/root/ros2_ws/
+      # - ~/ros2_ws/:/root/ros2_ws/
 
   slam:
+    # To Build Locally uncomment the following
     # build:
     #   context: ./slam 
     #   dockerfile: Dockerfile
+    # image: tortoisebot-ros2-slam-real
+    # To Pull Image Remotely
     image: tianyaoh501679/tianyaoh-cp22:tortoisebot-ros2-slam-real
     hostname: tortoisebot-ros2-slam
     network_mode: host
@@ -41,4 +47,4 @@ services:
       - ROS_HOSTNAME=master
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
-      - ~/ros2_ws/:/root/ros2_ws/
+      # - ~/ros2_ws/:/root/ros2_ws/
