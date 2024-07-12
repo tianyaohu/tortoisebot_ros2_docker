@@ -50,7 +50,7 @@ For This please add /map and camera to RVIZ
 The camera may not work properly, when rviz launch for the first time. Please check/uncheck/add the image topic again, to see the image to render properly
 
 Expected Result:
-![docker-compose pull](media/docker-compose-pull.gif)
+![docker-compose pull](media/real_ros2_docker_compose_up_speed.gif)
 
 
 
